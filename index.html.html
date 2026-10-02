@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Royal Clean — Prise de rendez-vous</title>
+<meta name="description" content="Royal Clean — Réservez votre prestation de nettoyage simplement en ligne.">
+<style>
+:root{
+  --gold:#d4af37;
+  --gold2:#f5d76e;
+  --yellow:#ffd21c;
+  --black:#080808;
+  --dark:#111111;
+  --card:#171717;
+  --muted:#b9b9b9;
+  --white:#fff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:Inter,Arial,sans-serif;background:var(--black);color:var(--white);
+  line-height:1.5;
+}
+a{text-decoration:none;color:inherit}
+.container{width:min(1120px,92%);margin:auto}
+header{
+  position:sticky;top:0;z-index:20;background:rgba(8,8,8,.88);
+  backdrop-filter:blur(14px);border-bottom:1px solid rgba(212,175,55,.2)
+}
+.nav{height:72px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:24px;font-weight:900;letter-spacing:1px}
+.logo span{color:var(--gold)}
+nav{display:flex;gap:25px;color:#ddd;font-size:14px}
+nav a:hover{color:var(--gold2)}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  background:linear-gradient(135deg,var(--gold),var(--yellow));
+  color:#090909;font-weight:800;padding:13px 20px;border-radius:12px;
+  border:0;cursor:pointer;box-shadow:0 8px 25px rgba(212,175,55,.15)
+}
+.btn:hover{transform:translateY(-1px)}
+.hero{
+  min-height:680px;display:grid;place-items:center;text-align:center;
+  background:
+  radial-gradient(circle at 50% 25%,rgba(212,175,55,.16),transparent 35%),
+  linear-gradient(180deg,#0c0c0c 0%,#080808 100%);
+  position:relative;overflow:hidden
+}
+.hero:before{
+  content:"";position:absolute;inset:0;opacity:.14;
+  background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);
+  background-size:50px 50px;mask-image:linear-gradient(to bottom,black,transparent)
+}
+.hero-content{position:relative;max-width:780px;padding:80px 0}
+.badge{display:inline-block;border:1px solid rgba(245,215,110,.45);color:var(--gold2);
+  border-radius:999px;padding:7px 13px;font-size:12px;font-weight:700;margin-bottom:20px}
+h1{font-size:clamp(44px,8vw,82px);line-height:.98;letter-spacing:-3px}
+h1 span{color:var(--gold)}
+.hero p{color:var(--muted);max-width:600px;margin:24px auto;font-size:18px}
+.hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn.secondary{background:transparent;color:#fff;border:1px solid #444;box-shadow:none}
+section{padding:85px 0}
+.section-title{text-align:center;margin-bottom:42px}
+.section-title small{color:var(--gold2);font-weight:800;text-transform:uppercase;letter-spacing:2px}
+.section-title h2{font-size:38px;margin-top:8px}
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{
+  background:linear-gradient(180deg,#191919,#111);
+  border:1px solid #292929;border-radius:20px;padding:27px;
+  transition:.2s
+}
+.card:hover{border-color:rgba(212,175,55,.55);transform:translateY(-4px)}
+.icon{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;
+  background:rgba(212,175,55,.12);color:var(--gold2);font-size:22px;margin-bottom:18px}
+.card h3{margin-bottom:7px}.card p{color:var(--muted);font-size:14px}
+.price{margin-top:20px;color:var(--gold2);font-weight:900;font-size:19px}
+.booking-wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:25px;align-items:start}
+.booking-info{background:linear-gradient(145deg,#1a160b,#111);border:1px solid #3a3017;border-radius:24px;padding:32px}
+.booking-info h3{font-size:28px;margin-bottom:12px}.booking-info p{color:var(--muted)}
+.points{margin-top:24px;display:grid;gap:14px}.point{display:flex;gap:11px;color:#ddd;font-size:14px}
+.point b{color:var(--gold2)}
+.form{background:#141414;border:1px solid #292929;border-radius:24px;padding:30px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.field{display:grid;gap:7px;margin-bottom:15px}.field.full{grid-column:1/-1}
+label{font-size:13px;color:#ddd;font-weight:700}
+input,select,textarea{
+  width:100%;background:#0c0c0c;border:1px solid #333;color:#fff;
+  padding:13px 14px;border-radius:11px;outline:none;font:inherit
+}
+input:focus,select:focus,textarea:focus{border-color:var(--gold)}
+textarea{min-height:90px;resize:vertical}
+.success{display:none;margin-top:15px;padding:13px;border-radius:11px;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.35);color:#b7f7c7;font-size:14px}
+footer{border-top:1px solid #222;padding:28px 0;color:#888;font-size:13px}
+.footer{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media(max-width:800px){
+ nav{display:none}.services{grid-template-columns:1fr}.booking-wrap{grid-template-columns:1fr}
+ .hero{min-height:600px}.grid{grid-template-columns:1fr}.field.full{grid-column:auto}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a href="#" class="logo">ROYAL <span>CLEAN</span></a>
+    <nav><a href="#prestations">Prestations</a><a href="#reservation">Réservation</a><a href="#contact">Contact</a></nav>
+    <a class="btn" href="#reservation">Réserver</a>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="container hero-content">
+    <div class="badge">NETTOYAGE • QUALITÉ • SOIN</div>
+    <h1>Votre véhicule,<br><span>notre savoir-faire.</span></h1>
+    <p>Royal Clean vous accompagne pour garder un véhicule propre, soigné et impeccable. Réservez votre prestation en quelques clics.</p>
+    <div class="hero-actions">
+      <a class="btn" href="#reservation">Prendre rendez-vous</a>
+      <a class="btn secondary" href="#prestations">Voir les prestations</a>
+    </div>
+  </div>
+</section>
+
+<section id="prestations">
+  <div class="container">
+    <div class="section-title">
+      <small>Nos prestations</small>
+      <h2>Un service simple et efficace</h2>
+    </div>
+    <div class="services">
+      <article class="card"><div class="icon">✦</div><h3>Formule Confort</h3><p>Aspiration, plastiques, vitres et remise au propre de l'habitacle.</p><div class="price">25 €</div></article>
+      <article class="card"><div class="icon">◆</div><h3>Formule Express</h3><p>Lavage et finition extérieure pour retrouver un véhicule propre et brillant.</p><div class="price">50 €</div></article>
+      <article class="card"><div class="icon">♛</div><h3>Formule Premium</h3><p>Une prestation complète intérieur + extérieur pour un résultat premium.</p><div class="price">80 €</div></article>
+    </div>
+  </div>
+</section>
+
+<section id="reservation">
+  <div class="container">
+    <div class="section-title">
+      <small>Réservation</small>
+      <h2>Choisissez votre créneau</h2>
+    </div>
+    <div class="booking-wrap">
+      <div class="booking-info">
+        <h3>Royal Clean</h3>
+        <p>Remplissez le formulaire et votre demande de rendez-vous sera préparée. Les informations peuvent ensuite être envoyées à Royal Clean.</p>
+        <div class="points">
+          <div class="point">✓ <span><b>Simple :</b> réservation en quelques secondes</span></div>
+          <div class="point">✓ <span><b>Flexible :</b> choisissez votre prestation et votre créneau</span></div>
+          <div class="point">✓ <span><b>Premium :</b> design noir, or et jaune</span></div>
+        </div>
+      </div>
+
+      <form class="form" id="bookingForm"
+      action="https://formsubmit.co/ajax/puginkylian97@gmail.com"
+      method="POST">
+        <input type="hidden" name="_subject" value="Nouvelle réservation — Royal Clean">
+        <input type="hidden" name="_template" value="table">
+        <input type="text" name="_honey" style="display:none">
+        <div class="grid">
+          <div class="field"><label for="name">Nom / prénom</label><input id="name" name="Nom / prénom" required placeholder="Votre nom"></div>
+          <div class="field"><label for="phone">Téléphone</label><input id="phone" name="Téléphone" type="tel" required placeholder="06 00 00 00 00"></div>
+          <div class="field full"><label for="service">Prestation</label>
+            <select id="service" name="Prestation" required>
+              <option value="">Sélectionner une prestation</option>
+              <option>Formule Express — 25 €</option>
+              <option>Formule Confort — 50 €</option>
+              <option>Formule Premium — 80 €</option>
+            </select>
+          </div>
+          <div class="field"><label for="date">Date</label><input id="date" name="Date souhaitée" type="date" required></div>
+          <div class="field"><label for="time">Heure</label>
+            <select id="time" name="Heure souhaitée" required>
+              <option value="">Choisir</option>
+              <option>09:00</option><option>10:00</option><option>11:00</option>
+              <option>12:00</option><option>13:00</option><option>14:00</option>
+              <option>15:00</option><option>16:00</option><option>17:00</option><option>18:00</option>
+            </select>
+          </div>
+          <div class="field full"><label for="message">Informations complémentaires</label><textarea id="message" name="Informations complémentaires" placeholder="Modèle du véhicule, demande particulière..."></textarea></div>
+        </div>
+        <button class="btn" type="submit" style="width:100%">Confirmer ma demande</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container" style="text-align:center">
+    <div class="section-title"><small>Royal Clean</small><h2>Une question ?</h2></div>
+    <p style="color:#aaa;margin-bottom:20px">Ajoute ici ton numéro, Instagram, adresse ou WhatsApp pour que tes clients puissent te contacter.</p>
+    <a class="btn" href="#reservation">Réserver maintenant</a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container footer">
+    <span>© 2026 Royal Clean — Tous droits réservés.</span>
+    <span>Nettoyage automobile & prestations</span>
+  </div>
+</footer>
+
+<script>
+const dateInput = document.getElementById('date');
+const today = new Date();
+dateInput.min = today.toISOString().split('T')[0];
+
+const bookingForm = document.getElementById('bookingForm');
+const submitButton = bookingForm.querySelector('button[type="submit"]');
+
+bookingForm.addEventListener('submit', async function(event) {
+  event.preventDefault();
+
+  submitButton.disabled = true;
+  submitButton.textContent = 'Envoi en cours...';
+
+  try {
+    const response = await fetch(bookingForm.action, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(Object.fromEntries(new FormData(bookingForm)))
+    });
+
+    const result = await response.json();
+
+    if (response.ok && result.success !== false) {
+      bookingForm.innerHTML = `
+        <div style="text-align:center;padding:35px 15px">
+          <div style="font-size:48px;margin-bottom:12px">✓</div>
+          <h3 style="margin:0 0 10px;color:#f2c94c">Demande envoyée !</h3>
+          <p style="color:#bbb;margin:0">Merci. Royal Clean a bien reçu votre demande de réservation.</p>
+        </div>`;
+    } else {
+      throw new Error(result.message || 'Erreur lors de l’envoi');
+    }
+  } catch (error) {
+    submitButton.disabled = false;
+    submitButton.textContent = 'Confirmer ma demande';
+    alert('Impossible d’envoyer la réservation pour le moment. Vérifiez votre connexion puis réessayez.');
+    console.error(error);
+  }
+});
+</script>
+</body>
+</html>
